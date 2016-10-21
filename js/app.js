@@ -2,7 +2,7 @@
 (function(){
 	var app = angular.module('githubViewer', ['datatables']);
 
-	var MainController = function($scope, $http, DTOptionsBuilder) {
+	var MainController = function($scope, $http, DTOptionsBuilder, $log, $anchorScroll, $location) {
 
 		// $scope.dtOptions = DTOptionsBuilder.newOptions().withDisplay(5);
 
@@ -14,7 +14,8 @@
 
 		var onReposLoad = function(response) {
 			$scope.repos = response.data;
-
+			$location.hash('userdetails');
+			$anchorScroll();
 		};
 
 		var onError = function(reason) {
@@ -22,6 +23,10 @@
 		};
 
 		$scope.search = function(username) {
+			// using angular's log service
+			$log.info('Searching for ' + username);
+
+			// using $http service to perform ajax get call to github api
 			$http.get('https://api.github.com/users/' + username)
 				.then(onUserLoad, onError);
 		}
@@ -29,7 +34,7 @@
 		
 	};
 
-	app.controller('MainController', ['$scope', '$http', 'DTOptionsBuilder', MainController]);
+	app.controller('MainController', ['$scope', '$http', 'DTOptionsBuilder', '$log', '$anchorScroll', '$location', MainController]);
 
 })();
 
