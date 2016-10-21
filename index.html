@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html ng-app='githubViewer'>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name='viewport' content="width='device-width', initial-scale=1.0"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel='stylesheet' href='css/jquery.dataTables.css'>
+    <link rel='stylesheet' href='css/style.css'>
+    <script src='js/jquery-3.1.1.js'></script>
+    <script src='js/bootstrap.min.js'></script>
+    <script src='js/jquery.dataTables.js'></script>
+    <script src='js/angular.js'></script><!-- version 1.5 -->
+    <script src='js/angular-datatables.min.js'></script>
+    <script src='js/app.js'></script>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <title>GitHub Viewer</title>
+</head>
+<body>
+    
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <span class="navbar-brand">GitHub Viewer</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class='container-fluid' ng-controller='MainController'>
+        <h2>GitHub Repo Viewer</h2>
+        <div class='row'>
+            <div class='col-sm-10'>
+                <form class="form-horizontal" id="searchForm" ng-submit='search(username)'>
+                    <div class="form-group"> 
+                        <div class="col-sm-6">
+                            <label for='username' class='control-label'>Search a Repo</label>
+                            <input type="text" class="form-control" id="username"placeholder="Search for username" ng-model='username' required />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-4">
+                            <button class="btn btn-primary btn-md" id="search">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div id='userdetails' ng-show='user'>
+            <div class='row'>
+                <div id='avatar' class='col-sm-offset-2 col-sm-4'>
+                    <img class='img-rounded img-thumbnail' ng-src='{{user.avatar_url}}' title='{{user.name}}' />
+                </div>
+            </div>
+
+            <h4>User Repo Details</h4>
+            <div class='row'>
+
+                <div class='table-responsive col-sm-8'>
+                    <table datatable="ng" dt-options="dtOptions" class='table table-stripped' id='user_table'>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Stars</th>
+                                <th>Language</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat='repo in repos'>
+                                <td>{{repo.name}}</td>
+                                <td>{{repo.stargazers_count | number}}</td>
+                                <td>{{repo.language}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div><!-- end MainController -->
+    <!-- add script tags here -->
+</body>
+</html>

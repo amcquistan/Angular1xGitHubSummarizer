@@ -1,0 +1,15 @@
+{
+  "name": "githubsummarizer",
+  "version": "1.0.0",
+  "description": "A Simple App for Playing Around in JS.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server"
+  },
+  "author": "Adam McQuistan",
+  "license": "ISC",
+  "devDependencies": {
+    "http-server": "^0.9.0"
+  }
+}
