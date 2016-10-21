@@ -4,6 +4,8 @@
 
 	var MainController = function($scope, $http, DTOptionsBuilder) {
 
+		// $scope.dtOptions = DTOptionsBuilder.newOptions().withDisplay(5);
+
 		var onUserLoad = function(response) {
 			$scope.user = response.data;
 			$http.get($scope.user.repos_url)
@@ -24,9 +26,7 @@
 				.then(onUserLoad, onError);
 		}
 
-		$scope.repoSortOrder = '_stargazers_count';
-		//$scope.dtOptions = DTOptionsBuilder.newOptions()
-		//	.withDisplay(10);
+		
 	};
 
 	app.controller('MainController', ['$scope', '$http', 'DTOptionsBuilder', MainController]);
