@@ -1,0 +1,31 @@
+<div class='row'>
+    <div id='avatar' class='col-sm-offset-2 col-sm-4'>
+        <img class='img-rounded img-thumbnail' ng-src='{{user.avatar_url}}' title='{{user.name}}' />
+    </div>
+</div>
+
+<div class='row'>
+    <h4>{{user.name}} Repo Details</h4>
+    <div class='table-responsive col-sm-8'>
+        <table datatable="ng" dt-options="dtOptions" class='table table-stripped' id='user_table'>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Stars</th>
+                    <th>Language</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat='repo in repos'>
+                    <td>
+                        <a href='#/repo/{{user.login}}/{{repo.name}}'>{{repo.name}}</a>
+                    </td>
+                    <td>{{repo.stargazers_count | number}}</td>
+                    <td>{{repo.language}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<a href='#/main'>Back to Search</a>
