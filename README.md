@@ -2,7 +2,7 @@
 
 ## Purpose
 
-  Demonstration of using modern web development technologies with data sourced from REST api web service. The concept of this 
+  Demonstration of using modern web development technologies with data sourced from RESTful api web service. The concept of this 
   application is inspired by **K. Scott Allen's PluralSight course Angular JS: Get Started**.
 
 ## Technologies
@@ -14,7 +14,7 @@
   
 ## Data Source
 
-  This application sources its data from public GitHub user accounts and repositories via the REST api endpoint at https://api.github.com
+  This application sources its data from public GitHub user accounts and repositories via the RESTful api endpoint at https://api.github.com
  
 ## Usage
    The project is currently set up to run on a node js server.  The following commands will initialize the project and start the server.
