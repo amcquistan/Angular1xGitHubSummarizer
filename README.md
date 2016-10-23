@@ -2,7 +2,8 @@
 
 ## Purpose
 
-  Demonstration of using modern web development technologies with data sourced from REST api web service. 
+  Demonstration of using modern web development technologies with data sourced from REST api web service. The concept of this 
+  application is inspired by **K. Scott Allen's PluralSight course Angular JS: Get Started**.
 
 ## Technologies
     
