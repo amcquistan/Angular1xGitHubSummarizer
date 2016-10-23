@@ -9,7 +9,7 @@
 	 * which exposes two methods:
 	 * 
 	*/
-	var github = function($http){
+	var github = function($http, $log){
 		
 		/**
 		 * private implementation of ajax api call to github for retrieving user info
@@ -29,6 +29,7 @@
 		 * @return promise
 		*/
 		var getRepos = function(user){
+			$log.info('User repos_url: ' + user.repos_url);
 			return $http.get(user.repos_url)
 						.then(function(response){
 							return response.data;
@@ -45,7 +46,7 @@
 							return $http.get(repoUrl + '/contributors');
 						})
 						.then(function(response){
-							repo.collaborators = response.data;
+							repo.contributors = response.data;
 							return repo;
 						});
 		};

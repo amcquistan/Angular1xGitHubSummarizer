@@ -1,9 +1,9 @@
 
 <!DOCTYPE html>
-<html ng-app='GitHubSummarizer'>
+<html>
 <head lang="en">
     <meta charset="UTF-8">
-    <meta name='viewport' content="width='device-width', initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel='stylesheet' href='css/jquery.dataTables.css'>
     <link rel='stylesheet' href='css/style.css'>
@@ -13,26 +13,28 @@
     <script src='js/angular.js'></script><!-- version 1.5 -->
     <script src='js/angular-datatables.min.js'></script>
     <script src='js/angular-route.js'></script>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
     <script src='js/app.js'></script>
     <script src='js/github.js'></script>
+    <script src='js/gCharts.js'></script>
     <script src='js/MainController.js'></script>
     <script src='js/UserController.js'></script>
     <script src='js/RepoController.js'></script>
     <link rel="icon" type="image/png" href="favicon.png">
-    <title>GitHub Viewer</title>
+    <title>GitHub Summarizer</title>
 </head>
 <body>
     
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
-                <span class="navbar-brand">GitHub Viewer</span>
+                <a  href='#/main' class="navbar-brand">GitHub Summarizer</a>
             </div>
         </div>
     </nav>
 
     <div class='container-fluid' ng-controller='MainController'>
-        <h2>GitHub Repo Viewer</h2>
+        
 
         <div ng-view></div>
 

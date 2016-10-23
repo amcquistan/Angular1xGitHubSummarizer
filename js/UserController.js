@@ -1,16 +1,22 @@
 (function(){
 	var app = angular.module('GitHubSummarizer');
 
-	var UserController = function($scope, github, $routeParams, $log) {
+	var UserController = function($scope, github, $routeParams, $log, gCharts) {
+
+		var drawLanguageChart = function() {
+			
+		};
 
 		var onUserLoad = function(data) {
 			$scope.user = data;
 			github.getRepos($scope.user)
-				.then(onReposLoad, onError);
+				.then(onReposLoad, onError)
+				.then(gCharts.drawLanguagePieChart, onError);
 		};
 
 		var onReposLoad = function(data) {
 			$scope.repos = data;
+			return $scope.repos;
 		};
 
 		var onError = function(reason) {
@@ -20,11 +26,9 @@
 		$scope.username = $routeParams.username;
 		github.getUser($scope.username)
 				.then(onUserLoad, onError);
-
-		
 	};
 
-	app.controller('UserController', ['$scope', 'github','$routeParams', '$log', UserController]);
+	app.controller('UserController', ['$scope', 'github','$routeParams', '$log', 'gCharts', UserController]);
 
 })();
 

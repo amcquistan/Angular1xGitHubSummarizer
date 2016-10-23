@@ -1,6 +1,10 @@
 
 (function(){
+
+	// create app module
 	var app = angular.module('GitHubSummarizer', ['ngRoute','datatables']);
+
+	// define routes
 	app.config(function($routeProvider){
 		$routeProvider
 			.when('/main', {
@@ -18,5 +22,13 @@
 			.otherwise({redirectTo: '/main'});
 	});
 
+	app.directive()
+
+	// load google charts 
+	google.charts.load('current', {'packages': ['corechart']});
+	google.charts.setOnLoadCallback(function(){
+		angular.bootstrap(document.body, ['GitHubSummarizer']);
+	});
+	
 })();
 

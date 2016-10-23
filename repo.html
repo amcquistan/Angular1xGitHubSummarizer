@@ -1,16 +1,22 @@
 
-<h2>{{repo.name}}</h2>
+<h2>{{repo.full_name}}</h2>
 
-<div>
-	Issues: {{repo.open_issues_count}}
+<div class='row'>
+	<div class='col-sm-offset-1 col-sm-4'>
+		<img class='img-rounded img-thumbnail' ng-src='{{repo.owner.avatar_url}}' title='{{repo.owner.login}}' />
+	</div>
 </div>
 
 <div>
-	<ul>
-		<li ng-repeat='user in repo.contributors'>
-			{{user.login}}
-		</li>
-	</ul>
+	Issues: {{repo.open_issues_count}}
+	<br>
+	Watchers: {{repo.watchers}}
+	<br>
+	Forks: {{repo.forks_count}}
+	<br>
+	Size: {{repo.size}}
+	<br>
+	Network: {{repo.network_count}}
 </div>
 
 <a href='#/main'>Back to Search</a>
