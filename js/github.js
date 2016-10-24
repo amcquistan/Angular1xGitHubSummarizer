@@ -38,15 +38,21 @@
 
 		var getRepoDetails = function(username, reponame){
 			var repo;
-			var repoUrl = 'https://api.github.com/repos/' + username + '/' + reponame;
+			var url = 'https://api.github.com/repos/' + username + '/' + reponame;
 
-			return $http.get(repoUrl)
+			return $http.get(url)
 						.then(function(response){
 							repo = response.data;
-							return $http.get(repoUrl + '/contributors');
+							$log.info('github.getRepoDetails Calling ' + url + '/commits');
+							return $http.get(url + '/commits');
 						})
 						.then(function(response){
-							repo.contributors = response.data;
+							repo.commits = response.data;
+							var dates = [];
+							$.each(repo.commits, function(idx, commit){
+								dates.push(new Date(commit.commit.author.date));
+							});
+							repo.commitdates = dates;
 							return repo;
 						});
 		};

@@ -2,22 +2,25 @@
 <h2>{{repo.full_name}}</h2>
 
 <div class='row'>
-	<div class='col-sm-offset-1 col-sm-4'>
-		<img class='img-rounded img-thumbnail' ng-src='{{repo.owner.avatar_url}}' title='{{repo.owner.login}}' />
+	<div class='col-sm-offset-1 col-sm-8'>
+		<div class="list-group">
+		  <a class="list-group-item" href='#'>Issues <span class="badge">{{repo.open_issues_count}}</span></a>
+		  <a class="list-group-item" href='#'>Watchers <span class="badge">{{repo.watchers}}</span></a> 
+		  <a class="list-group-item" href='#'>Forks <span class="badge">{{repo.forks_count}}</span></a>
+		  <a class="list-group-item" href='#'>Size <span class="badge">{{repo.size}}</span></a>
+		  <a class="list-group-item" href='#'>Network <span class="badge">{{repo.network_count}}</span></a> 
+		</div>
 	</div>
 </div>
 
-<div>
-	Issues: {{repo.open_issues_count}}
-	<br>
-	Watchers: {{repo.watchers}}
-	<br>
-	Forks: {{repo.forks_count}}
-	<br>
-	Size: {{repo.size}}
-	<br>
-	Network: {{repo.network_count}}
+<div class='row'>
+	<div class='col-sm-10'>
+		<div id='commits_chart'></div>
+	</div>
 </div>
 
-<a href='#/main'>Back to Search</a>
-<a href='#/user/{{repo.owner.login}}'>Back to {{repo.owner.login}}</a>
+<div class='col-sm-4'>
+	<a class='btn btn-primary btn-md' href='#/main'>Back to Search</a>
+
+	<a class='btn btn-primary btn-md' href='#/user/{{repo.owner.login}}'>Back to {{repo.owner.login}}</a>
+</div>

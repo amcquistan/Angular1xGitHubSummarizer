@@ -22,10 +22,8 @@
 			.otherwise({redirectTo: '/main'});
 	});
 
-	app.directive()
-
 	// load google charts 
-	google.charts.load('current', {'packages': ['corechart']});
+	google.charts.load('current', {'packages': ['corechart', 'line']});
 	google.charts.setOnLoadCallback(function(){
 		angular.bootstrap(document.body, ['GitHubSummarizer']);
 	});

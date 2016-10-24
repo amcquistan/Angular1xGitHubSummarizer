@@ -1,7 +1,7 @@
 
 (function(){
 
-	var gCharts = function($log){
+	var gitHubCharts = function($log){
 
 		var drawLanguagePieChart = function(data) {
 			var chartData = new google.visualization.DataTable();
@@ -36,15 +36,19 @@
 			chart.draw(chartData, options);	
 		};
 
-		// return object for public api of gCharts service functionality
+		
+
+		// return object for public api of gitHubCharts service functionality
 		return {
-			drawLanguagePieChart: drawLanguagePieChart
+			drawLanguagePieChart: drawLanguagePieChart,
+			createTimeSeries: createTimeSeries
+
 		};
 	};
 
 	var module = angular.module('GitHubSummarizer');
 
-	// register gCharts service with module
-	module.factory('gCharts', gCharts);
+	// register gitHubCharts service with module
+	module.factory('gitHubCharts', gitHubCharts);
 })();
 
