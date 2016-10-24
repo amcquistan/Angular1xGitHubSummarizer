@@ -1,8 +1,24 @@
 
 (function(){
 
-	var gitHubCharts = function($log){
+	/**
+	 * gitHubCharts is a service which abstracts away logic to 
+	 * work with Google Charts in order to display data graphically.
+	 * 
+	 * gitHubCharts service is implemented in the revealing module pattern
+	 * which exposes two methods:
+	 *  - drawLanguagePieChart
+	 *  - drawCommitsChart
+	*/
+	var gitHubCharts = function(){
 
+		/**
+		* private implementation to draw a pie chart of languages in repos present 
+		* in a users github accout.
+		*
+		* @param Object data
+		* @return void
+		*/
 		var drawLanguagePieChart = function(data) {
 			var chartData = new google.visualization.DataTable();
 			chartData.addColumn('string', 'Language');
@@ -36,6 +52,13 @@
 			chart.draw(chartData, options);	
 		};
 
+		/**
+		* private implementation to create a time series aggregate with up to 10 
+		* bins of variable binwidths.
+		*
+		* @param Object data
+		* @return Object
+		*/
 		var createTimeSeries = function(data) {
 			var dateData = {
 				uniqueNumericDates: [],
@@ -59,12 +82,7 @@
 				bins = 10,
 				range = daysDiff(uniqueLowerDate,uniqueUpperDate);
 
-			$log.info('Summary 1: ');
-			$log.info('  uniqueUpperDate ' + uniqueUpperDate);
-			$log.info('  uniqueLowerDate ' + uniqueLowerDate);
-			$log.info('  range ' + range);
-
-			// just use data points	
+			// just use raw data points	
 			if (dateData.uniqueNumericDates.length < 10 
 				|| range < 31) {
 				$.each(dateData.uniqueNumericDates, function(binIdx, uniqueDate){
@@ -93,9 +111,6 @@
 					startDate = new Date(uniqueLowerDate),
 					endDate = new Date(uniqueLowerDate.setDate(uniqueLowerDate.getDate() + binWidth));
 				for(var i=0; i<bins; i++) {	
-					$log.info(i + '.  Binwidth: ' + binWidth); 
-					$log.info('   startDate ' + startDate);
-					$log.info('   endDate ' + endDate);
 					var bin = {
 						dateDisplay: startDate.getMonth() + '-' + startDate.getDate() + '-' + startDate.getFullYear(),
 						count: 0,
@@ -113,9 +128,6 @@
 				}
 			}
 
-			$log.info('dateData Summary 2: ');
-			$log.info(dateData);
-
 			$.each(dateData.bins, function(idx, bin){
 				dateData.rows.push([bin.dateDisplay, bin.count]);
 			});
@@ -123,32 +135,54 @@
 			return dateData;
 		};
 
+		/**
+		* private implementation to take a numeric presentation of a date in  
+		* the form of yyyymmdd and convert it back to a Date JS object
+		*
+		* @param number dateNumeric
+		* @return Date
+		*/
 		var parseNumericDate = function(dateNumeric) {
 			var year = Math.floor(dateNumeric / 10000);
 			var remainder = dateNumeric % 10000;
 			var month = Math.floor(remainder / 100) - 1;
 			var day = remainder % 100;
 			var date = new Date(year, month, day);
-
-			// $log.info('Parsing Numeric to Date');
-			//$log.info('  Given:  ' + dateNumeric);
-			//$log.info('  Return: ' + date);
 			return date;
 		};
 
+		/**
+		* private implementation to take a Date JS object and parse it to a number
+		* of format yyyymmdd.
+		*
+		* @param Date date
+		* @return number
+		*/
 		var parseDateToNumeric = function(date){
 			var dateNumeric = (date.getFullYear() * 10000) + ((date.getMonth() + 1) * 100) + date.getDate();
-			//$log.info('Parsing to Numeric Date');
-			//$log.info('  Given:  ' + date);
-			//$log.info('  Return: ' + dateNumeric);
 			return dateNumeric;
 		};
 
+		/**
+		* private implementation to calculate the difference between two Date
+		* objects and return the number of days between them.
+		*
+		* @param Date startDate
+		* @param Date endDate
+		* @return number
+		*/
 		var daysDiff = function(startDate, endDate) {
 			var miliSecPerDay = 60 * 60 * 24 * 1000;
 			return Math.floor((endDate-startDate) / miliSecPerDay);
 		};
 
+		/**
+		* private implementation to draw a line chart of commits over time  
+		* for a repo on github.
+		*
+		* @param number dateNumeric
+		* @return Date
+		*/
 		var drawCommitsChart = function(data) {
 			var datesData = createTimeSeries(data.commitdates);
 
@@ -170,7 +204,6 @@
 		// return object for public api of gitHubCharts service functionality
 		return {
 			drawLanguagePieChart: drawLanguagePieChart,
-			createTimeSeries: createTimeSeries,
 			drawCommitsChart: drawCommitsChart
 		};
 	};

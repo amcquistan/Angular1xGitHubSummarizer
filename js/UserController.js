@@ -1,7 +1,7 @@
 (function(){
 	var app = angular.module('GitHubSummarizer');
 
-	var UserController = function($scope, github, $routeParams, $log, gitHubCharts) {
+	var UserController = function($scope, github, $routeParams, gitHubCharts) {
 
 		var drawLanguageChart = function() {
 			
@@ -28,7 +28,7 @@
 				.then(onUserLoad, onError);
 	};
 
-	app.controller('UserController', ['$scope', 'github','$routeParams', '$log', 'gitHubCharts', UserController]);
+	app.controller('UserController', ['$scope', 'github','$routeParams', 'gitHubCharts', UserController]);
 
 })();
 
