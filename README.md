@@ -2,13 +2,13 @@
 
 ## Purpose
 
-  Demonstration of using modern web development technologies with data sourced from RESTful api web service. The concept of this 
-  application is inspired by **K. Scott Allen's PluralSight course Angular JS: Get Started**.
+  Demonstration of using modern web development technologies with data sourced from the GitHub RESTful api web service. The concept
+  of this application is inspired by **K. Scott Allen's PluralSight course Angular JS: Get Started**.
 
 ## Technologies
     
   - Angular version 1
-  - jQuery version 3
+  - jQuery version 2
   - Google Charts current verions (45 as of October 23, 2016)
   - Bootstrap version 3
   
@@ -27,4 +27,4 @@ $ npm start
 License
 ----
 
-MIT
+[MIT license](http://opensource.org/licenses/MIT)
